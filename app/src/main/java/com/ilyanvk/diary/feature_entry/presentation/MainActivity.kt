@@ -1,4 +1,4 @@
-package com.ilyanvk.diary
+package com.ilyanvk.diary.feature_entry.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
