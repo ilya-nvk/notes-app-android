@@ -15,7 +15,7 @@ class EntryRepositoryImpl(
         return entryDao.getEntryById(id)
     }
 
-    override suspend fun insertEntry(entry: Entry) {
+    override suspend fun addEntry(entry: Entry) {
         entryDao.insertEntry(entry)
     }
 

@@ -8,7 +8,7 @@ interface EntryRepository {
 
     suspend fun getEntryById(id: String): Entry?
 
-    suspend fun insertEntry(entry: Entry)
+    suspend fun addEntry(entry: Entry)
 
     suspend fun deleteEntry(entry: Entry)
 }

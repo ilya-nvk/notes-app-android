@@ -9,4 +9,8 @@ import com.ilyanvk.diary.feature_entry.domain.model.Entry
 )
 abstract class EntryDatabase : RoomDatabase() {
     abstract val entryDao: EntryDao
+
+    companion object {
+        const val DATABASE_NAME = "entry_database"
+    }
 }
