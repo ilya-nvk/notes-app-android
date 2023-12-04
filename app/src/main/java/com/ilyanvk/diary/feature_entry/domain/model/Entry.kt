@@ -9,5 +9,5 @@ data class Entry(
     val content: String,
     val timeCreated: Long,
     val timeModified: Long,
-    @PrimaryKey val id: String? = null
+    @PrimaryKey val id: String
 )

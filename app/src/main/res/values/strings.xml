@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Diary</string>
+    <string name="time_created">Time created</string>
+    <string name="time_modified">Time modified</string>
+    <string name="ascending">Ascending</string>
+    <string name="descending">Descending</string>
+    <string name="add_entry">Add entry</string>
+    <string name="your_entry">Your entry</string>
+    <string name="sort">Sort</string>
+    <string name="entry_deleted">Entry deleted</string>
+    <string name="undo">Undo</string>
+    <string name="enter_title">Enter title…</string>
+    <string name="enter_content">Write something…</string>
+    <string name="save_entry">Save entry</string>
 </resources>
