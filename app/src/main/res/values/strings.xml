@@ -5,7 +5,7 @@
     <string name="ascending">Ascending</string>
     <string name="descending">Descending</string>
     <string name="add_entry">Add entry</string>
-    <string name="your_entry">Your entry</string>
+    <string name="your_diary">Your diary</string>
     <string name="sort">Sort</string>
     <string name="entry_deleted">Entry deleted</string>
     <string name="undo">Undo</string>

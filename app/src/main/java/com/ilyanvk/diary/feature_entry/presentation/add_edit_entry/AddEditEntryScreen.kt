@@ -3,10 +3,12 @@ package com.ilyanvk.diary.feature_entry.presentation.add_edit_entry
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.FloatingActionButton
@@ -24,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.ilyanvk.diary.R
-import com.ilyanvk.diary.feature_entry.presentation.add_edit_entry.components.TransparentHintTextField
+import com.ilyanvk.diary.feature_entry.presentation.add_edit_entry.components.TransparentTextField
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -33,8 +35,8 @@ fun AddEditEntryScreen(
 ) {
     val titleState = viewModel.entryTitle.value
     val contentState = viewModel.entryContent.value
-
     val snackbarHostState = remember { SnackbarHostState() }
+    val scrollState = rememberScrollState()
 
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
@@ -70,35 +72,29 @@ fun AddEditEntryScreen(
                 .background(MaterialTheme.colorScheme.background)
                 .padding(it)
                 .padding(16.dp)
+                .verticalScroll(scrollState)
         ) {
-            TransparentHintTextField(
+            TransparentTextField(
                 text = titleState.text,
                 hintId = titleState.hintId,
                 onValueChange = {
                     viewModel.onEvent(AddEditEntryEvent.EnteredTitle(it))
                 },
-                onFocusChange = {
-                    viewModel.onEvent(AddEditEntryEvent.ChangeTitleFocus(it))
-                },
-                isHintVisible = titleState.isHintVisible,
                 singleLine = true,
                 textStyle = MaterialTheme.typography.headlineMedium
             )
             Spacer(modifier = Modifier.height(16.dp))
-            TransparentHintTextField(
+            TransparentTextField(
                 text = contentState.text,
                 hintId = contentState.hintId,
                 onValueChange = {
                     viewModel.onEvent(AddEditEntryEvent.EnteredContent(it))
                 },
-                onFocusChange = {
-                    viewModel.onEvent(AddEditEntryEvent.ChangeContentFocus(it))
-                },
-                isHintVisible = contentState.isHintVisible,
-                singleLine = true,
+                singleLine = false,
                 textStyle = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.fillMaxHeight()
+                modifier = Modifier.wrapContentHeight()
             )
+            Spacer(Modifier.height(33.dp))
         }
 
     }

@@ -4,6 +4,5 @@ import com.ilyanvk.diary.R
 
 data class EntryTextFieldState(
     val text: String = "",
-    val hintId: Int = R.id.empty_string,
-    val isHintVisible: Boolean = true
+    val hintId: Int = R.id.empty_string
 )

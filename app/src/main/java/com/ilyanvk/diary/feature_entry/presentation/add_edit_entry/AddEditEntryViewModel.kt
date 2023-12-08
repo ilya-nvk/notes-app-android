@@ -48,12 +48,10 @@ class AddEditEntryViewModel @Inject constructor(
                     entriesUseCases.getEntryByIdUseCase(entryId)?.also { entry ->
                         currentEntryId = entry.id
                         _entryTitle.value = entryTitle.value.copy(
-                            text = entry.title,
-                            isHintVisible = false
+                            text = entry.title
                         )
                         _entryContent.value = entryContent.value.copy(
-                            text = entry.content,
-                            isHintVisible = false
+                            text = entry.content
                         )
                         timeCreated = entry.timeCreated
                     }
@@ -68,20 +66,8 @@ class AddEditEntryViewModel @Inject constructor(
                 _entryTitle.value = entryTitle.value.copy(text = event.value)
             }
 
-            is AddEditEntryEvent.ChangeTitleFocus -> {
-                _entryTitle.value = entryTitle.value.copy(
-                    isHintVisible = !event.focusState.isFocused && entryTitle.value.text.isBlank()
-                )
-            }
-
             is AddEditEntryEvent.EnteredContent -> {
                 _entryContent.value = entryContent.value.copy(text = event.value)
-            }
-
-            is AddEditEntryEvent.ChangeContentFocus -> {
-                _entryContent.value = entryContent.value.copy(
-                    isHintVisible = !event.focusState.isFocused && entryContent.value.text.isBlank()
-                )
             }
 
             AddEditEntryEvent.SaveEntry -> {

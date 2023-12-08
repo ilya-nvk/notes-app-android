@@ -5,7 +5,6 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -74,7 +73,7 @@ fun EntriesScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = stringResource(R.string.your_entry),
+                    text = stringResource(R.string.your_diary),
                     style = MaterialTheme.typography.headlineLarge
                 )
 
@@ -110,23 +109,25 @@ fun EntriesScreen(
             val undoString = stringResource(R.string.undo)
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(state.entries) { entry ->
-                    EntryItem(entry = entry, modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable {
+                    EntryItem(entry = entry,
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        onClick = {
                             navController.navigate(
                                 Screen.AddEditEntryScreen.route + "?entryId=${entry.id}"
                             )
-                        }, onDeleteClick = {
-                        viewModel.onEvent(EntriesEvent.DeleteEntry(entry))
-                        coroutineScope.launch {
-                            val result = snackbarHostState.showSnackbar(
-                                message = entryDeletedString, actionLabel = undoString
-                            )
-                            if (result == SnackbarResult.ActionPerformed) {
-                                viewModel.onEvent(EntriesEvent.RestoreEntry)
+                        },
+                        onDeleteClick = {
+                            viewModel.onEvent(EntriesEvent.DeleteEntry(entry))
+                            coroutineScope.launch {
+                                val result = snackbarHostState.showSnackbar(
+                                    message = entryDeletedString, actionLabel = undoString
+                                )
+                                if (result == SnackbarResult.ActionPerformed) {
+                                    viewModel.onEvent(EntriesEvent.RestoreEntry)
+                                }
                             }
-                        }
-                    })
+                        })
                     Spacer(modifier = Modifier.height(16.dp))
                 }
             }
