@@ -3,10 +3,10 @@ package com.ilyanvk.diary.feature_entry.presentation.add_edit_entry
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -81,18 +81,18 @@ fun AddEditEntryScreen(
                     viewModel.onEvent(AddEditEntryEvent.EnteredTitle(it))
                 },
                 singleLine = true,
-                textStyle = MaterialTheme.typography.headlineMedium
+                textStyle = MaterialTheme.typography.headlineLarge
             )
             Spacer(modifier = Modifier.height(16.dp))
             TransparentTextField(
                 text = contentState.text,
                 hintId = contentState.hintId,
-                onValueChange = {
-                    viewModel.onEvent(AddEditEntryEvent.EnteredContent(it))
+                onValueChange = { content ->
+                    viewModel.onEvent(AddEditEntryEvent.EnteredContent(content))
                 },
                 singleLine = false,
                 textStyle = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.wrapContentHeight()
+                modifier = Modifier.fillMaxHeight()
             )
             Spacer(Modifier.height(33.dp))
         }
