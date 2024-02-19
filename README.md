@@ -1,1 +1,7 @@
-# Diary App Android \[в разработке\]
+# Notes App Android
+
+- Jetpack Compose, Jetpack Navigation
+- Coroutines
+- MVVM, Clean Architecture
+- Hilt
+- Room
